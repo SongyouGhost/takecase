@@ -263,7 +263,7 @@
               additionalNote: event.target.additionalNote.value
         };
       
-        fetch("https://www.yourdomain.com/api/submit", { // 這裡改成 Cloudflare Worker API
+        fetch("https://submitformworker.sam883187.workers.dev/api/submit", { // 這裡改成 Cloudflare Worker API
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData)
