@@ -240,10 +240,13 @@
     
     <script>
       document.getElementById("myForm").addEventListener("submit", function(event) {
-        event.preventDefault();
+          event.preventDefault();
+          
+          var submitBtn = document.getElementById("submit-btn");
+          submitBtn.innerText = "傳送中..."; // 1. 變更按鈕文字，表示開始發送
       
-        var formData = {
-          reason: event.target.reason.value,
+          var formData = {
+              reason: event.target.reason.value,
               identity: event.target.identity.value,
               name: event.target.name.value,
               phone: event.target.phone.value,
@@ -261,21 +264,33 @@
               visualElements: event.target.visualElements.value,
               preferences: event.target.preferences.value,
               additionalNote: event.target.additionalNote.value
-        };
+          };
       
-        fetch("https://submitformworker.sam883187.workers.dev/api/submit", { // 這裡改成 Cloudflare Worker API
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData)
-        })
-        .then(response => response.json())
-        .then(data => {
-          alert("表單已提交成功！");
-        })
-        .catch(error => {
-          console.error("錯誤：", error);
-        });
+          fetch("https://submitformworker.sam883187.workers.dev/api/submit", { // Cloudflare Worker API
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(formData)
+          })
+          .then(response => response.json())
+          .then(data => {
+              console.log("Worker 回應:", data.status);
+              
+              if (data.status === "到達 Worker") {
+                  submitBtn.innerText = "到達 Worker"; // 2. Worker 已收到
+              } else if (data.status === "已到達") {
+                  submitBtn.innerText = "已到達 Google Apps Script"; // 3. API 已收到
+              } else if (data.status === "成功紀錄") {
+                  submitBtn.innerText = "成功紀錄！"; // 4. 試算表已寫入
+                  alert("表單已成功送出！");
+                  event.target.reset(); // 清空表單
+              }
+          })
+          .catch(error => {
+              console.error("錯誤：", error);
+              submitBtn.innerText = "發送失敗，請重試";
+          });
       });
       </script>
+      
   </body>
 </html>
