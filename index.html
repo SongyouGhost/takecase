@@ -239,12 +239,11 @@
     </div>
     
     <script>
-      // 攔截表單送出事件
       document.getElementById("myForm").addEventListener("submit", function(event) {
         event.preventDefault();
-        // 取得表單資料，轉成物件形式
+      
         var formData = {
-              reason: event.target.reason.value,
+          reason: event.target.reason.value,
               identity: event.target.identity.value,
               name: event.target.name.value,
               phone: event.target.phone.value,
@@ -263,17 +262,20 @@
               preferences: event.target.preferences.value,
               additionalNote: event.target.additionalNote.value
         };
-        
-        // 呼叫 Apps Script 端的 submitForm 函式
-        google.script.run.withSuccessHandler(function(){
-          document.getElementById("result").innerText = "送出成功！";
-          document.getElementById("popup").style.display = "flex"; // 顯示 popup
-          event.target.reset(); // 重設表單
-          setTimeout(function(){ // 設定 3 秒後自動隱藏 popup
-            document.getElementById("popup").style.display = "none";
-          }, 5000);
-        }).submitForm(formData);
+      
+        fetch("https://www.yourdomain.com/api/submit", { // 這裡改成 Cloudflare Worker API
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+          alert("表單已提交成功！");
+        })
+        .catch(error => {
+          console.error("錯誤：", error);
+        });
       });
-    </script>
+      </script>
   </body>
 </html>
