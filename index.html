@@ -266,7 +266,7 @@
               additionalNote: event.target.additionalNote.value
           };
       
-          fetch("submitformworker.sam883187.workers.dev", { // Cloudflare Worker API
+          fetch("https://submitformworker.sam883187.workers.dev/api/submit", { // Cloudflare Worker API
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(formData)
