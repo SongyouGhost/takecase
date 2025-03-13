@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=2.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google Form 後台範例</title>
 </head>
 <style>
@@ -50,6 +50,20 @@
     min-height: 1rem;
     background-color: #00000000
   }
+  .button-checkbox {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .button-checkbox:hover {background-color: #c8c8c8;}
+  
+  .button-checkbox input[type="checkbox"] {display: none;}
+  .button-checkbox.checked {background-color: #000;color: #fff;}
+  
   .note {
     color: #888;
     margin-top: 10px;
@@ -184,11 +198,12 @@
         
         <!-- E. 加分項：精準溝通資訊 -->
         <h3>
-          <label for="toggleE">
-          <input type="checkbox" id="toggleE">
-          我有詳細的企劃！僅需要視覺設計
+          <label class="button-checkbox">
+            <input type="checkbox" id="toggleE">
+            <span>我有詳細的企劃！僅需要視覺設計</span>
           </label>
         </h3>
+        
     
         <div class="fes" id="fieldsetE">
           <h3>現有企劃內容與計畫</h3>
@@ -204,13 +219,16 @@
       // 取得 checkbox 與 fieldset 元素
       var toggleE = document.getElementById('toggleE');
       var fieldsetE = document.getElementById('fieldsetE');
+      var buttonCheckbox = document.querySelector('.button-checkbox');
     
       // 監聽 checkbox 的變化事件
       toggleE.addEventListener('change', function() {
         if (this.checked) {
           fieldsetE.style.display = 'block';
+          buttonCheckbox.classList.add('checked');
         } else {
           fieldsetE.style.display = 'none';
+          buttonCheckbox.classList.remove('checked');
         }
       });
     </script>
