@@ -11,13 +11,14 @@
   .container {width: 100%; height: 100%;margin: 0; align-items: center;background-color: #FCFCFC;position: relative;}
   h1 {font-family: 'Noto Serif TC', sans-serif; text-align: left;color: #333; font: size 30pt;}
   h3 {font-family: 'Noto Serif TC', sans-serif; text-align: left;font-size: 20pt;}
-  form {width:100%;max-width: 800px;margin: 0 auto;padding: 20px 1em;border-radius: 8px;}
+  form {width:100%;max-width: 800px;margin: 0 auto;padding: 20px 1em;border-radius: 8px;box-sizing: border-box;}
   #fieldsetE {display: none;}  .fes {
     margin-top: 5vh;
     margin-bottom: 2vh;
-    border-top: 5px solid #333333;
+    border-top: 3px solid #333333;
     background-color: #fff;
-    padding: 5px;
+    padding: 10px;
+    box-sizing: border-box;
   }
   legend {
     font-weight: 300;
@@ -43,7 +44,7 @@
   textarea {
     width: 100%;
     font-weight: 500;
-    font-size: 2em;
+    font-size: 1.2em;
     padding: 8px;
     margin-top: 3px;
     border: none;
@@ -56,18 +57,22 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    max-width: 100%;
+    word-wrap: break-word;
+    word-break: break-all;
+    white-space: pre-wrap;
   }
-
   input:focus,
   textarea:focus {
     border-bottom: 2px solid #000;
   }
 
   textarea {
-    resize: block;
-    height: 2em;
+    resize: vertical;
+    min-height: 2em;
     background-color: transparent;
     line-height: 1.5;
+    width: 100%;
   }
 
   input[type="date"]::-webkit-calendar-picker-indicator {
@@ -130,9 +135,7 @@
       border-radius: 8px;
       font-size: 1.2em;
       text-align: center;
-    }
-
-  /* 方案選擇樣式 */
+    }  /* 方案選擇樣式 */
   .package-options {
     display: flex;
     justify-content: space-between;
@@ -192,11 +195,11 @@
               <img src="yologo1080px.png" alt="個人照片" class="profile-photo">
             </div>
             <div class="intro-section">
-              <h2>設計師 小明</h2>
+              <h2>松佑</h2>
               <p class="title">視覺設計 / 品牌設計師</p>
               <p class="description">
-                擁有超過5年的設計經驗，專注於品牌識別設計與視覺傳達。
-                致力於為客戶創造獨特且有價值的設計解決方案。
+                嗨，我是松佑，在不斷創作與實踐下有多年設計經驗，專注於品牌識別設計與視覺傳達。
+                致力於為客戶創造獨特全新的解決方案。
               </p>
               <a href="https://portfolio.sonnngyou.com/" class="portfolio-btn">查看作品集</a>
             </div>
@@ -204,16 +207,14 @@
 
           <style>
             .business-card {
-              display: flex;
               background: #ffffff;
               border: 1px solid #e0e0e0;
-              padding: 30px;
+              padding: 20px;
               margin: 20px 0;
-              gap: 30px;
+              box-sizing: border-box;
             }
 
             .profile-section {
-              flex: 1;
               display: flex;
               flex-direction: column;
               align-items: center;
@@ -221,8 +222,8 @@
             }
 
             .profile-photo {
-              width: 200px;
-              height: 200px;
+              width: 150px;
+              height: 150px;
               object-fit: cover;
             }
 
@@ -233,6 +234,10 @@
               border-radius: 6px;
               text-decoration: none;
               transition: all 0.3s ease;
+              display: inline-block;
+              text-align: center;
+              width: 100%;
+              box-sizing: border-box;
             }
 
             .portfolio-btn:hover {
@@ -240,12 +245,13 @@
             }
 
             .intro-section {
-              flex: 2;
+              text-align: center;
+              margin-top: 20px;
             }
 
             .intro-section h2 {
               margin: 0 0 10px 0;
-              font-size: 24px;
+              font-size: 20px;
             }
 
             .title {
@@ -257,13 +263,45 @@
               line-height: 1.6;
               margin-bottom: 20px;
             }
+
+            /* 桌機版面配置 */
+            @media (min-width: 768px) {
+              .business-card {
+                display: flex;
+                padding: 30px;
+                gap: 30px;
+              }
+
+              .profile-section {
+                flex: 1;
+              }
+
+              .profile-photo {
+                width: 200px;
+                height: 200px;
+              }
+
+              .intro-section {
+                flex: 2;
+                text-align: left;
+                margin-top: 0;
+              }
+
+              .intro-section h2 {
+                font-size: 24px;
+              }
+
+              .portfolio-btn {
+                width: auto;
+              }
+            }
           </style>
         <label for="reason">請問是從哪看到？以及選擇我的原因</label>
-        <input type="text" id="reason" name="entry.1635308325" placeholder="">
+        <input type="text" id="reason" name="entry.1635308325" placeholder="IG、FB、朋友介紹、其他">
         
         <!-- C. 專案主題與需求說明 -->
         <div class="fes">
-          <h3>設計服務</h3>
+          <h3>①設計服務</h3>
           
           <!-- 新增方案選擇區域 -->
           <label for="package-select">預先選擇方案組合</label>
@@ -330,11 +368,16 @@
           <label for="deliverables" class="required">預期成果物</label>
           <input type="text" id="deliverables" name="entry.1348832890" placeholder="" value="設計需求報告" required>
           <p class="note">
-            例如：網頁、紙本手冊、戶外大圖、APP介面等
+            例如：網頁、紙本手冊、戶外大圖、APP介面等<br>
+              ※ 初稿提供數量：2<br>
+              ※ 免費校稿次數：2<br>
+              ※ 如需額外校稿需提供項目費用的10%金額<br>
+              ※ 報價費用不包含印刷、製作、攝影費用<br>
+              ※ 在提供報價單後，須提供50%總價的金額作為訂金，或拆單處理。<br>
           </p>
 
           <label for="deadline" class="required">預計結案區間／截稿日</label>
-          <input type="text" id="deadline" name="entry.186845123" required>
+          <input type="text" id="deadline" name="entry.186845123" placeholder="2025/0N/NN" required>
           <p class="note">請填寫：年/月/日，或其他重要里程碑或時間節點</p>
         </div>
 
@@ -389,7 +432,7 @@
 }
 </style>    
         <div class="fes" id="fieldsetE">
-          <h3>現有企劃內容與計畫</h3>
+          <h3>②現有企劃內容</h3>
           <label for="plan-description">企劃簡報或簡易概念說明</label>
           <textarea id="plan-description" name="entry.777088526" placeholder="請附上企劃文件或連結，也可以簡易說明你的企劃"></textarea>
           <p class="note">
@@ -402,7 +445,7 @@
           <textarea id="visual-elements" name="entry.545731851" placeholder="請提供連結或簡述內容"></textarea>
           
           <label for="preferences">特別喜好內容</label>
-          <textarea id="preferences" name="entry.722544220" placeholder=""></textarea>
+          <textarea id="preferences" name="entry.722544220" placeholder="我喜歡日系、叛逆、龐克風格的，像是KINGKUN"></textarea>
     
           <label for="additional-note">請在此補充其他說明</label>
           <textarea id="additional-note" name="entry.1906774537" placeholder=""></textarea>
@@ -410,15 +453,8 @@
             ※ 若有其他合作條件或互惠安排請特別說明<br>
           </p>
           <label for="schedule-note">時程規劃備註</label>
-          <textarea id="schedule-note" name="entry.931948171" placeholder=""></textarea>
-          <p class="note">
-            ※ 若不限結案時間請指出大概日期<br>
-            ※ 初稿提供數量：2<br>
-            ※ 免費校稿次數：2<br>
-            ※ 如需額外校稿需提供項目費用的10%金額<br>
-            ※ 報價費用不包含印刷、製作、攝影費用<br>
-            ※ 在提供報價單後，須提供50%總價的金額作為訂金，或拆單處理。<br>
-          </p>
+          <textarea id="schedule-note" name="entry.931948171" placeholder="希望在半年內完成~中間需要對一次案件"></textarea>
+          
         </div>
         <script>
       // 取得 checkbox 與 fieldset 元素
@@ -443,38 +479,38 @@
     
       
     <div class="fes">
-      <h3>品牌基本資料</h3>
+      <h3>③品牌基本資料</h3>
 
       <label for="brand-name" class="required">品牌名稱</label>
-      <input type="text" id="brand-name" name="entry.16260862" placeholder="" required>
+      <input type="text" id="brand-name" name="entry.16260862" placeholder="某某有限公司" required>
       
       <label for="business-scope">業務範圍、產業</label>
-      <input type="text" id="business-scope" name="entry.597763710" placeholder="">
+      <input type="text" id="business-scope" name="entry.597763710" placeholder="視覺/設計產業">
       
       <label for="brand-intro">品牌簡介：</label>
-      <textarea id="brand-intro" name="entry.263757792" placeholder=""></textarea>
+      <textarea id="brand-intro" name="entry.263757792" placeholder="開創3年，專注於創意與美學的視覺策略公司"></textarea>
       <p class="note">
         風格、理念、定位、業務、公司歷史與規模
       </p>
     </div>
 
     <div class="fes">
-      <h3>你的聯絡資訊</h3>
+      <h3>④聯絡資訊</h3>
 
-      <label for="identity">您的職稱</label>
+      <label for="identity">職稱</label>
       <input type="text" id="identity" name="entry.351225718" placeholder="行銷部職員、窗口、創意總監或公司老闆">
       
       <label for="name" class="required">姓名</label>
-      <input type="text" id="name" name="entry.1461061964" placeholder="" required>
+      <input type="text" id="name" name="entry.1461061964" placeholder="Joner" required>
 
       <label for="email" class="required">Email</label>
-      <input type="email" id="email" name="entry.21224336" placeholder="" required>
+      <input type="email" id="email" name="entry.21224336" placeholder="example@gmail.com" required>
       
       <label for="phone">電話/lineID</label>
-      <input type="tel" id="phone" name="entry.1906387883" placeholder="">
+      <input type="tel" id="phone" name="entry.1906387883" placeholder="000-000-000">
       
       <label for="website">公司/品牌網站或社群連結</label>
-      <input type="text" id="website" name="website" placeholder="">
+      <input type="text" id="website" name="website" placeholder="www.example.com">
 
     </div>
         
