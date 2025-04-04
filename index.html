@@ -301,8 +301,8 @@
               }
             }
           </style>
-        <label for="reason">請問是從哪看到？以及選擇我的原因</label>
-        <input type="text" id="reason" name="entry.1635308325" placeholder="IG、FB、朋友介紹、其他">
+        <label for="reason" class="required">請問是從哪看到？以及選擇我的原因</label>
+        <input type="text" id="reason" name="entry.1635308325" placeholder="IG、FB、朋友介紹、其他" required>
         
         <!-- C. 專案主題與需求說明 -->
         <div class="fes">
@@ -311,12 +311,12 @@
           <!-- 新增方案選擇區域 -->
           <label for="package-select">預先選擇方案組合</label>
           <select id="package-select" name="package">
-            <option value="none" data-price="0" data-goal="探索設計目標" data-deliverables="設計需求報告ㄋ">免費設計諮詢</option>
-            <option value="mini" data-price="3000-5000" data-goal="建立簡單的視覺識別" data-deliverables="Logo設計或簡單的平面設計">迷你方案 (3,000-5,000)</option>
-            <option value="basic" data-price="5000-15000" data-goal="提升品牌知名度、建立基礎品牌形象" data-deliverables="Logo設計、名片設計、基礎品牌規範">基本方案 (5,000-15,000)</option>
-            <option value="standard" data-price="15000-30000" data-goal="建立完整品牌識別、提升市場競爭力" data-deliverables="Logo設計、品牌識別系統、文宣設計、包裝設計">標準方案 (15,000-30,000)</option>
-            <option value="premium" data-price="30000-50000" data-goal="全方位品牌升級、市場定位重塑" data-deliverables="完整品牌識別系統、行銷物料設計、網站設計、社群媒體視覺">高級方案 (30,000-50,000)</option>
-            <option value="enterprise" data-price="50000+" data-goal="企業級品牌戰略規劃與執行" data-deliverables="品牌策略規劃、完整視覺系統設計、全方位行銷設計包套">企業方案 (50,000+)</option>
+            <option value="none" data-price="--" data-goal="探索設計目標" data-deliverables="設計需求與預期成果梳理">免費設計諮詢</option>
+            <option value="basiclogotype" data-price="3000-6000" data-goal="於商業或創作上使用獨特標準字" data-deliverables="標準字一組">基本標準字委託</option>
+            <option value="basiclogo" data-price="6000-10000" data-goal="建立令人印象深刻的標誌於事業上" data-deliverables="標誌設計、可能還有一些簡單的平面設計。">基本標誌設計</option>
+            <option value="keyvision" data-price="8000-15000" data-goal="透過吸睛的主視覺設計吸引目標群眾" data-deliverables="一套主視覺設計與識別系統規範、可能有周邊和行銷視覺">主視覺設計</option>
+            <option value="brand" data-price="8000-20000" data-goal="建立完整品牌識別、提升市場競爭力" data-deliverables="標誌設計、品牌識別規範，可能還有一些周邊、行銷、社群視覺">品牌設計</option>
+            <option value="zine" data-price="2000-20000" data-goal="希望將自己的內容或想法製作成冊" data-deliverables="小誌完稿檔案與協助送印">小誌製作</option>
             <option value="custom" data-price="" data-goal="" data-deliverables="">自訂方案</option>
           </select>
 
@@ -359,9 +359,12 @@
           </style>
           
           <label for="budget"class="required">預算區間</label>
-          <input type="text" id="budget" name="entry.803347368" placeholder="" value="0" required>
+          <input type="text" id="budget" name="entry.803347368" placeholder="" value="--" required>
           <p class="note">
-            報價方式除了設計的成果物以外，也會根據專案的複雜度、時程安排等因素來提供報價。
+            報價方式除了設計的成果物以外，也會根據專案的複雜度、時程安排等因素來提供報價。<br>
+            報價費用不包含印刷、製作、攝影費用<br>
+            提供報價單後，須提供50%總價的金額作為訂金，或拆單處理。<br>
+            如需額外校稿需提供項目費用的10%金額
           </p>
     
           <label for="design-goal" class="required">設計目標</label>
@@ -371,14 +374,10 @@
           </p>
           
           <label for="deliverables" class="required">預期成果物</label>
-          <input type="text" id="deliverables" name="entry.1348832890" placeholder="" value="設計需求報告" required>
+          <input type="text" id="deliverables" name="entry.1348832890" placeholder="" value="設計需求與預期成果梳理" required>
           <p class="note">
             例如：網頁、紙本手冊、戶外大圖、APP介面等<br>
-              ※ 初稿提供數量：2<br>
-              ※ 免費校稿次數：2<br>
-              ※ 如需額外校稿需提供項目費用的10%金額<br>
-              ※ 報價費用不包含印刷、製作、攝影費用<br>
-              ※ 在提供報價單後，須提供50%總價的金額作為訂金，或拆單處理。<br>
+              
           </p>
 
           <label for="deadline" class="required">預計結案區間／截稿日</label>
@@ -412,14 +411,14 @@
         <h3>
           <label class="button-checkbox">
             <input type="checkbox" id="toggleE">
-            <span>我有企劃和想法！僅需要視覺設計<i class="arrow right"></i></span>
+            <span>我有企劃和想法！<i class="arrow right"></i></span>
           </label>
         </h3>
 
 <style>
 .arrow {
   border: solid #000000;
-  border-width: 0 5px 5px 0;
+  border-width: 0 2px 2px 0;
   display: inline-block;
   padding: 8px;
   margin-left: 10px;
@@ -433,7 +432,7 @@
 #toggleE:checked + span .arrow {
   transform: rotate(45deg);
   border: solid #d2d2d2;
-  border-width: 0 5px 5px 0;
+  border-width: 0 2px 2px 0;
 }
 </style>    
         <div class="fes" id="fieldsetE">
@@ -449,7 +448,7 @@
           <label for="visual-elements">視覺元素／品牌系統／現有相關資料</label>
           <textarea id="visual-elements" name="entry.545731851" placeholder="請提供連結或簡述內容"></textarea>
           
-          <label for="preferences">特別喜好內容</label>
+          <label for="preferences">喜好</label>
           <textarea id="preferences" name="entry.722544220" placeholder="我喜歡日系、叛逆、龐克風格的，像是KINGKUN"></textarea>
     
           <label for="additional-note">請在此補充其他說明</label>
